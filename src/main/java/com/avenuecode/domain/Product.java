@@ -35,6 +35,9 @@ public class Product {
 	@JoinColumn(name = "parent_product_id")
 	private Product parent;
 	
+	@JsonIgnore
+	@OneToMany(mappedBy = "parent", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Product> subproducts;
 	
 	public Product() {
 	}

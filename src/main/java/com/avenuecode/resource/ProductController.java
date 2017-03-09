@@ -10,6 +10,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -41,6 +42,28 @@ public class ProductController {
 		ProductDao dao = new ProductDao();
 		Product prod = dao.findById(id);
 		return Response.ok(prod).build();
+	}
+	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("with")
+	public Response responseGetWithSubsAndImg(@QueryParam("images") boolean returnImages, 
+			@QueryParam("subproducts") boolean returnSubproducts) {
+		ProductDao dao = new ProductDao();
+		List<Product> products = dao.getListWith(returnSubproducts, returnImages);
+
+		return Response.ok(products).build();
+	}
+	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("{id}/with")
+	public Response responseGetByIdWithSubsAndImg(@QueryParam("images") boolean returnImages, 
+			@QueryParam("subproducts") boolean returnSubproducts, @PathParam("id") long id) {
+		ProductDao dao = new ProductDao();
+		List<Product> products = dao.getListByIdWith(returnSubproducts, returnImages, id);
+
+		return Response.ok(products).build();
 	}	
 	
 	@GET

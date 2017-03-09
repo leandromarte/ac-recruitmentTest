@@ -42,6 +42,14 @@ Returns all subproducts from a specific product
 Returns all images from a specific product
 
 
+**GET** http://localhost:8080/product/with/?\[images=true\]\[&subproducts=true\]
+Return all products with images and/or subproducts. Parameters are optional
+
+
+**GET** http://localhost:8080/product/{id}/with/?\[images=true\]\[&subproducts=true\]
+Return a specific product with images and/or subproducts. Parameters are optional
+
+
 **POST** http://localhost:8080/product
 ```
 {

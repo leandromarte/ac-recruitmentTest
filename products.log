@@ -1,0 +1,11 @@
+/*C3*/SET SCHEMA PUBLIC
+\u000d\u000a    alter table Images \u000d\u000a       drop constraint FK1fxg3du9a2dev5uainc6pr03m
+\u000d\u000a    alter table Products \u000d\u000a       drop constraint FKlhcypcale6r69vgd952hyw5pd
+\u000d\u000a    drop table Images if exists
+\u000d\u000a    drop table Products if exists
+\u000d\u000a    drop sequence hibernate_sequence if exists
+create sequence hibernate_sequence start with 1 increment by 1
+\u000d\u000a    create table Images (\u000d\u000a       id bigint not null,\u000d\u000a        name varchar(255),\u000d\u000a        type varchar(255),\u000d\u000a        product_id bigint,\u000d\u000a        primary key (id)\u000d\u000a    )
+\u000d\u000a    create table Products (\u000d\u000a       id bigint not null,\u000d\u000a        description varchar(255),\u000d\u000a        name varchar(255),\u000d\u000a        parent_product_id bigint,\u000d\u000a        primary key (id)\u000d\u000a    )
+\u000d\u000a    alter table Images \u000d\u000a       add constraint FK1fxg3du9a2dev5uainc6pr03m \u000d\u000a       foreign key (product_id) \u000d\u000a       references Products
+\u000d\u000a    alter table Products \u000d\u000a       add constraint FKlhcypcale6r69vgd952hyw5pd \u000d\u000a       foreign key (parent_product_id) \u000d\u000a       references Products

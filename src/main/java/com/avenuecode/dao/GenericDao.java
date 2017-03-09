@@ -80,7 +80,7 @@ class GenericDao<T, I extends Serializable> {
 		List<T> l = null;
 		try {
 			session = sessionFactory.openSession();
-			l = session.createQuery(query, persistedClass).list();
+			l = session.createQuery(query).list();
 		} finally {
 			session.close();
 		}
