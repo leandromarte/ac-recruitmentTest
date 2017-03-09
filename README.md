@@ -21,11 +21,6 @@ All commands should be runned inside the app directory.
 
 ### Examples of calls
 
-**__VERB__** http://localhost:8080/...
-```
-{}
-```
-
 **GET** http://localhost:8080/product
 Returns all products
 
